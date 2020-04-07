@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.header {
+  background: $header-color;
+  .container {
+    padding: 6px 7px;
+    height: 30px;
+    width: 960px;
+    margin: auto;
+    font-size: 1.1em;
+    span,
+    a {
+      padding-right: 15px;
+    }
+    a {
+      color: $poster-text-color;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+      &.active {
+        color: red;
+      }
+    }
+  }
+}
+
+.home {
+  width: 960px;
+  margin: 25px auto;
+  .name-div {
+    display: flex;
+    .name {
+      margin-right: 50px;
+    }
+  }
+  .poster {
+    border-bottom: 1px solid lighten(#000, 85);
+    padding: 25px 0;
+    img {
+      float: left;
+      padding-right: 15px;
+      width: 210px;
+      height: 130px;
+    }
+    a {
+      color: lighten(blue, 10);
+      text-decoration: none;
+      font-size: 1.2em;
+    }
+    .price {
+      color: lighten(green, 5);
+      font-size: 1.4em;
+      font-weight: bold;
+      .second-part {
+        color: #898989;
+        font-size: 1rem;
+        i {
+          font-size: 0.08em;
+          padding: 10px 5px;
+          vertical-align: middle;
+        }
+        .alt {
+          font-weight: normal;
+          color: $poster-text-color;
+        }
+      }
+    }
+    .rooms {
+      @extend .price;
+      font-size: 0.9em;
+      color: $poster-text-color;
+      font-weight: normal;
+    }
+    .description {
+      color: $poster-text-color;
+    }
+    .date {
+      color: $poster-text-color;
+      i {
+        padding-right: 5px;
+      }
+    }
+  }
+}
