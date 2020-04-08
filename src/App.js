@@ -11,9 +11,7 @@ function App() {
     <React.Fragment>
       <Header />
       <Route exact path="/">
-        <div className="home">
-          <Home />
-        </div>
+        <Home />
       </Route>
       <Route exact path="/wishList">
         <WishList />
