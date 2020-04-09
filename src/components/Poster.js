@@ -1,41 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Poster(props) {
   const poster = props.poster;
+  const photoUrl = poster.beautiful_url.substring(
+    0,
+    poster.beautiful_url.lastIndexOf("-")
+  );
+  const photoId = Object.keys(poster.photos)[0];
+  var dateOptions = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+  };
+  const [checked, setChecked] = useState(false);
+
+  function setStyle() {
+    return checked ? "checked" : "";
+  }
+
+  function handleCheck() {
+    setChecked(!checked);
+  }
 
   return (
     <div className="poster">
-      <Link to={`/poster/${poster._id}`}>
-        <img src="./img/flat.jfif" alt="img" />
-      </Link>
-      <div className="name-div">
-        <div className="name">
-          <Link to={`/poster/${poster._id}`}>{poster.street_name}</Link>
-        </div>
-        <div>
-          <button type="button">Add to wish list</button>
-        </div>
+      <div className="img-div">
+        <Link to={`/poster/${poster._id}`}>
+          <img
+            src={`https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`}
+            alt="img"
+          />
+        </Link>
       </div>
-      <div className="price">
-        700 грн
-        <span className="second-part">
-          <i className="fas fa-circle"></i>
-          <span className="alt">26$</span>
-        </span>
-      </div>
-      <div className="rooms">
-        {poster.rooms_count} комнат
-        <span className="second-part">
-          <i className="fas fa-circle"></i>
-          <span className="alt">
-            41 м<sup>2</sup>
+      <div className="info-div">
+        <div className="name-div">
+          <div className="name">
+            <Link to={`/poster/${poster._id}`}>
+              {poster.district_type_name} {poster.district_name}{" "}
+              {poster.street_name}
+            </Link>
+          </div>
+          <div>
+            <button type="button" onClick={handleCheck} className="star-button">
+              <i className={`fa fa-star ${setStyle()}`}></i>
+            </button>
+          </div>
+        </div>
+        <div className="price">
+          {poster.priceArr[1]} {poster.currency_type}
+          <span className="second-part">
+            <i className="fas fa-circle"></i>
+            <span className="alt">{poster.priceArr[3]} грн</span>
           </span>
-        </span>
-      </div>
-      <div className="description">{poster.description}</div>
-      <div className="date">
-        <i className="far fa-clock"></i>04.04.2020
+        </div>
+        <div className="rooms">
+          {poster.rooms_count} комнат
+          <span className="second-part">
+            <i className="fas fa-circle"></i>
+            <span className="alt">
+              {poster.total_square_meters} м<sup>2</sup>
+            </span>
+          </span>
+        </div>
+        <div className="description">{poster.description.substring(0, 40)}</div>
+        <div className="date">
+          <i className="far fa-clock"></i>
+          {new Date(Date.parse(poster.publishing_date)).toLocaleString(
+            "ru-RU",
+            dateOptions
+          )}
+        </div>
       </div>
     </div>
   );

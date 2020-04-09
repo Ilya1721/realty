@@ -24,43 +24,56 @@ body {
 .home {
   width: 960px;
   margin: 25px auto; }
-  .home .name-div {
-    display: flex; }
-    .home .name-div .name {
-      margin-right: 50px; }
   .home .poster {
     border-bottom: 1px solid #d9d9d9;
-    padding: 25px 0; }
-    .home .poster img {
-      float: left;
+    padding: 25px 0;
+    display: flex; }
+    .home .poster .img-div img {
       padding-right: 15px;
       width: 210px;
       height: 130px; }
-    .home .poster a {
+    .home .poster .info-div a {
       color: #3333ff;
       text-decoration: none;
       font-size: 1.2em; }
-    .home .poster .price, .home .poster .rooms {
+    .home .poster .info-div .name-div {
+      display: flex; }
+      .home .poster .info-div .name-div .name {
+        margin-right: 50px;
+        width: 400px; }
+      .home .poster .info-div .name-div .star-button {
+        background: #fff;
+        border: 0;
+        cursor: pointer; }
+        .home .poster .info-div .name-div .star-button:focus {
+          outline: none; }
+        .home .poster .info-div .name-div .star-button i {
+          font-size: 1.5em; }
+          .home .poster .info-div .name-div .star-button i:hover {
+            color: orange; }
+      .home .poster .info-div .name-div .checked {
+        color: orange; }
+    .home .poster .info-div .price, .home .poster .info-div .rooms {
       color: #009a00;
       font-size: 1.4em;
       font-weight: bold; }
-      .home .poster .price .second-part, .home .poster .rooms .second-part {
+      .home .poster .info-div .price .second-part, .home .poster .info-div .rooms .second-part {
         color: #898989;
         font-size: 1rem; }
-        .home .poster .price .second-part i, .home .poster .rooms .second-part i {
+        .home .poster .info-div .price .second-part i, .home .poster .info-div .rooms .second-part i {
           font-size: 0.08em;
           padding: 10px 5px;
           vertical-align: middle; }
-        .home .poster .price .second-part .alt, .home .poster .rooms .second-part .alt {
+        .home .poster .info-div .price .second-part .alt, .home .poster .info-div .rooms .second-part .alt {
           font-weight: normal;
           color: #333333; }
-    .home .poster .rooms {
+    .home .poster .info-div .rooms {
       font-size: 0.9em;
       color: #333333;
       font-weight: normal; }
-    .home .poster .description {
+    .home .poster .info-div .description {
       color: #333333; }
-    .home .poster .date {
+    .home .poster .info-div .date {
       color: #333333; }
-      .home .poster .date i {
+      .home .poster .info-div .date i {
         padding-right: 5px; }
