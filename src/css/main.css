@@ -23,57 +23,118 @@ body {
 
 .home {
   width: 960px;
-  margin: 25px auto; }
-  .home .poster {
+  margin: 25px auto;
+  display: flex; }
+  .home .filter-div {
+    width: 250px;
+    margin-top: 30px; }
+    .home .filter-div #price-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #4d4d4d; }
+    .home .filter-div #room-label {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #4d4d4d; }
+    .home .filter-div .submit-div {
+      margin-top: 15px; }
+      .home .filter-div .submit-div input[type="submit"] {
+        background: #007bff;
+        border: 0;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 1em;
+        cursor: pointer;
+        width: 100px;
+        height: 30px; }
+        .home .filter-div .submit-div input[type="submit"]:hover {
+          background: #0069d9; }
+        .home .filter-div .submit-div input[type="submit"]:focus {
+          outline: none; }
+    .home .filter-div .room-button {
+      background: #fff;
+      border: 1px solid #b3b3b3;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 10px;
+      padding: 5px;
+      width: 35px;
+      height: 35px;
+      font-size: 1em;
+      color: #333333; }
+      .home .filter-div .room-button.clicked {
+        background: #f0f2fa;
+        border-color: #256799; }
+      .home .filter-div .room-button:focus {
+        outline: none; }
+    .home .filter-div input[type="text"] {
+      width: 60px;
+      height: 20px;
+      margin-right: 8px;
+      font-size: 1em;
+      padding: 5px;
+      color: #333333;
+      border-radius: 4px;
+      border: 1px solid #b3b3b3; }
+    .home .filter-div select {
+      width: 60px;
+      height: 30px;
+      font-size: 1em;
+      border-radius: 4px;
+      color: #333333; }
+  .home .poster-div .poster {
     border-bottom: 1px solid #d9d9d9;
     padding: 25px 0;
     display: flex; }
-    .home .poster .img-div img {
+    .home .poster-div .poster .img-div img {
       padding-right: 15px;
       width: 210px;
       height: 130px; }
-    .home .poster .info-div a {
+    .home .poster-div .poster .info-div a {
       color: #3333ff;
       text-decoration: none;
       font-size: 1.2em; }
-    .home .poster .info-div .name-div {
+    .home .poster-div .poster .info-div .name-div {
       display: flex; }
-      .home .poster .info-div .name-div .name {
+      .home .poster-div .poster .info-div .name-div .name {
         margin-right: 50px;
-        width: 400px; }
-      .home .poster .info-div .name-div .star-button {
+        width: 300px; }
+      .home .poster-div .poster .info-div .name-div .star-button {
         background: #fff;
         border: 0;
         cursor: pointer; }
-        .home .poster .info-div .name-div .star-button:focus {
+        .home .poster-div .poster .info-div .name-div .star-button:focus {
           outline: none; }
-        .home .poster .info-div .name-div .star-button i {
+        .home .poster-div .poster .info-div .name-div .star-button i {
           font-size: 1.5em; }
-          .home .poster .info-div .name-div .star-button i:hover {
+          .home .poster-div .poster .info-div .name-div .star-button i:hover {
             color: orange; }
-      .home .poster .info-div .name-div .checked {
+      .home .poster-div .poster .info-div .name-div .checked {
         color: orange; }
-    .home .poster .info-div .price, .home .poster .info-div .rooms {
+    .home .poster-div .poster .info-div .price, .home .poster-div .poster .info-div .rooms {
       color: #009a00;
       font-size: 1.4em;
       font-weight: bold; }
-      .home .poster .info-div .price .second-part, .home .poster .info-div .rooms .second-part {
+      .home .poster-div .poster .info-div .price .second-part, .home .poster-div .poster .info-div .rooms .second-part {
         color: #898989;
         font-size: 1rem; }
-        .home .poster .info-div .price .second-part i, .home .poster .info-div .rooms .second-part i {
+        .home .poster-div .poster .info-div .price .second-part i, .home .poster-div .poster .info-div .rooms .second-part i {
           font-size: 0.08em;
           padding: 10px 5px;
           vertical-align: middle; }
-        .home .poster .info-div .price .second-part .alt, .home .poster .info-div .rooms .second-part .alt {
+        .home .poster-div .poster .info-div .price .second-part .alt, .home .poster-div .poster .info-div .rooms .second-part .alt {
           font-weight: normal;
           color: #333333; }
-    .home .poster .info-div .rooms {
+    .home .poster-div .poster .info-div .rooms {
       font-size: 0.9em;
       color: #333333;
       font-weight: normal; }
-    .home .poster .info-div .description {
+    .home .poster-div .poster .info-div .description {
       color: #333333; }
-    .home .poster .info-div .date {
+    .home .poster-div .poster .info-div .date {
       color: #333333; }
-      .home .poster .info-div .date i {
+      .home .poster-div .poster .info-div .date i {
         padding-right: 5px; }

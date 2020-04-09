@@ -63,7 +63,9 @@ function Poster(props) {
             </span>
           </span>
         </div>
-        <div className="description">{poster.description.substring(0, 40)}</div>
+        <div className="description">
+          {poster.description.substring(0, 40)}...
+        </div>
         <div className="date">
           <i className="far fa-clock"></i>
           {new Date(Date.parse(poster.publishing_date)).toLocaleString(
