@@ -28,6 +28,103 @@ body {
   }
 }
 
+.slider {
+  display: flex;
+  justify-content: center;
+  img {
+    width: 620px;
+    height: 465px;
+  }
+  margin: 25px auto;
+  .container {
+    position: relative;
+    i {
+      font-size: 3em;
+      color: #fff;
+    }
+    .btn-left {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      margin-left: 5px;
+      background-color: rgba(129, 127, 113, 0.2);
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background-color: rgba(129, 127, 113, 0.4);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .btn-right {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      margin-right: 5px;
+      background-color: rgba(129, 127, 113, 0.2);
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      &:hover {
+        background-color: rgba(129, 127, 113, 0.4);
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+
+.details {
+  width: 960px;
+  margin: 50px auto;
+  .details-header {
+    display: flex;
+    .name {
+      font-size: 2em;
+      color: lighten(#000, 30);
+      font-weight: bold;
+    }
+    .star {
+      align-self: center;
+      margin-right: 25px;
+    }
+  }
+  #photo-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 2em;
+    color: lighten(#000, 20);
+  }
+}
+
+.star-button {
+  background: #fff;
+  border: 0;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  i {
+    font-size: 1.5em;
+    &:hover {
+      color: orange;
+    }
+  }
+}
+.checked {
+  color: orange;
+}
+
 .home {
   width: 960px;
   margin: 25px auto;
@@ -140,23 +237,6 @@ body {
           .name {
             margin-right: 50px;
             width: 300px;
-          }
-          .star-button {
-            background: #fff;
-            border: 0;
-            cursor: pointer;
-            &:focus {
-              outline: none;
-            }
-            i {
-              font-size: 1.5em;
-              &:hover {
-                color: orange;
-              }
-            }
-          }
-          .checked {
-            color: orange;
           }
         }
         .price {

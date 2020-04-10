@@ -21,6 +21,84 @@ body {
       .header .container a.active {
         color: red; }
 
+.slider {
+  display: flex;
+  justify-content: center;
+  margin: 25px auto; }
+  .slider img {
+    width: 620px;
+    height: 465px; }
+  .slider .container {
+    position: relative; }
+    .slider .container i {
+      font-size: 3em;
+      color: #fff; }
+    .slider .container .btn-left {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      margin-left: 5px;
+      background-color: rgba(129, 127, 113, 0.2);
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px; }
+      .slider .container .btn-left:hover {
+        background-color: rgba(129, 127, 113, 0.4); }
+      .slider .container .btn-left:focus {
+        outline: none; }
+    .slider .container .btn-right {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      margin-right: 5px;
+      background-color: rgba(129, 127, 113, 0.2);
+      color: white;
+      font-size: 16px;
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px; }
+      .slider .container .btn-right:hover {
+        background-color: rgba(129, 127, 113, 0.4); }
+      .slider .container .btn-right:focus {
+        outline: none; }
+
+.details {
+  width: 960px;
+  margin: 50px auto; }
+  .details .details-header {
+    display: flex; }
+    .details .details-header .name {
+      font-size: 2em;
+      color: #4d4d4d;
+      font-weight: bold; }
+    .details .details-header .star {
+      align-self: center;
+      margin-right: 25px; }
+  .details #photo-header {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 2em;
+    color: #333333; }
+
+.star-button {
+  background: #fff;
+  border: 0;
+  cursor: pointer; }
+  .star-button:focus {
+    outline: none; }
+  .star-button i {
+    font-size: 1.5em; }
+    .star-button i:hover {
+      color: orange; }
+
+.checked {
+  color: orange; }
+
 .home {
   width: 960px;
   margin: 25px auto;
@@ -108,18 +186,6 @@ body {
       .home .poster-div .poster .info-div .name-div .name {
         margin-right: 50px;
         width: 300px; }
-      .home .poster-div .poster .info-div .name-div .star-button {
-        background: #fff;
-        border: 0;
-        cursor: pointer; }
-        .home .poster-div .poster .info-div .name-div .star-button:focus {
-          outline: none; }
-        .home .poster-div .poster .info-div .name-div .star-button i {
-          font-size: 1.5em; }
-          .home .poster-div .poster .info-div .name-div .star-button i:hover {
-            color: orange; }
-      .home .poster-div .poster .info-div .name-div .checked {
-        color: orange; }
     .home .poster-div .poster .info-div .price, .home .poster-div .poster .info-div .rooms {
       color: #009a00;
       font-size: 1.4em;

@@ -5,16 +5,12 @@ import "./css/main.css";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import WishList from "./components/WishList";
+import Details from "./components/Details";
 
 function App() {
   const localStorage = window.localStorage;
-  //localStorage.setItem("wishList", JSON.stringify([""]));
-  //console.log(wishList.items);
-  console.log(JSON.parse(localStorage.getItem("wishList")));
-  //localStorage.clear();
 
   const addToWishList = poster => {
-    console.log(`adding to wish list ${poster._id}`);
     const wishList = JSON.parse(localStorage.getItem("wishList"));
     if (wishList !== null) {
       const ids = wishList.map(item => item._id);
@@ -28,7 +24,6 @@ function App() {
   };
 
   const deleteFromWishList = poster => {
-    console.log(`deleting from wish list ${poster._id}`);
     const wishList = JSON.parse(localStorage.getItem("wishList"));
     localStorage.clear();
     localStorage.setItem(
@@ -48,6 +43,12 @@ function App() {
       </Route>
       <Route exact path="/wishList">
         <WishList
+          addToWishList={addToWishList}
+          deleteFromWishList={deleteFromWishList}
+        />
+      </Route>
+      <Route exact path="/poster/:id">
+        <Details
           addToWishList={addToWishList}
           deleteFromWishList={deleteFromWishList}
         />

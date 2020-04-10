@@ -21,10 +21,6 @@ function Poster(props) {
     isInWish = ids.includes(poster._id);
   }
   const [checked, setChecked] = useState(isInWish);
-  //console.log(isInWish);
-  //console.log(poster._id);
-  //console.log(JSON.parse(localStorage.getItem("wishList")));
-  //console.log(JSON.parse(localStorage.getItem("wishList")));
 
   function setStyle() {
     return checked ? "checked" : "";
@@ -38,11 +34,11 @@ function Poster(props) {
       props.deleteFromWishList(poster);
     }
   }
-  //console.log(window.localStorage.getItem("wishList"));
+
   return (
     <div className="poster">
       <div className="img-div">
-        <Link to={`/poster/${poster._id}`}>
+        <Link to={`/poster/${poster.realty_id}`}>
           <img
             src={`https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`}
             alt="img"
@@ -52,7 +48,7 @@ function Poster(props) {
       <div className="info-div">
         <div className="name-div">
           <div className="name">
-            <Link to={`/poster/${poster._id}`}>
+            <Link to={`/poster/${poster.realty_id}`}>
               {poster.district_type_name} {poster.district_name}{" "}
               {poster.street_name}
             </Link>
