@@ -13,7 +13,18 @@ function Poster(props) {
     month: "numeric",
     day: "numeric"
   };
-  const [checked, setChecked] = useState(false);
+  const localStorage = window.localStorage;
+  let isInWish = false;
+  if (localStorage.getItem("wishList") !== null) {
+    const list = JSON.parse(localStorage.getItem("wishList"));
+    const ids = list.map(item => item._id);
+    isInWish = ids.includes(poster._id);
+  }
+  const [checked, setChecked] = useState(isInWish);
+  //console.log(isInWish);
+  //console.log(poster._id);
+  //console.log(JSON.parse(localStorage.getItem("wishList")));
+  //console.log(JSON.parse(localStorage.getItem("wishList")));
 
   function setStyle() {
     return checked ? "checked" : "";
@@ -21,8 +32,13 @@ function Poster(props) {
 
   function handleCheck() {
     setChecked(!checked);
+    if (!checked) {
+      props.addToWishList(poster);
+    } else {
+      props.deleteFromWishList(poster);
+    }
   }
-
+  //console.log(window.localStorage.getItem("wishList"));
   return (
     <div className="poster">
       <div className="img-div">

@@ -4,7 +4,7 @@ import axios from "axios";
 import Poster from "./Poster";
 import Filter from "./Filter";
 
-function Home() {
+function Home(props) {
   const [state, setState] = useState({
     items: []
   });
@@ -42,11 +42,16 @@ function Home() {
     return (
       <div className="home">
         <div className="filter-div">
-          <Filter setFilter={setFilter} />
+          <Filter setFilter={setFilter} itemCount={state.items.length} />
         </div>
         <div className="poster-div">
           {state.items.map(item => (
-            <Poster key={item._id} poster={item} />
+            <Poster
+              key={item._id}
+              addToWishList={props.addToWishList}
+              deleteFromWishList={props.deleteFromWishList}
+              poster={item}
+            />
           ))}
         </div>
       </div>

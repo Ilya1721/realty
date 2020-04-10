@@ -50,6 +50,14 @@ body {
       font-weight: bold;
       color: lighten(#000, 30);
     }
+    .propos-div {
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: lighten(#000, 20);
+      #number {
+        font-weight: bold;
+      }
+    }
     .submit-div {
       margin-top: 15px;
       input[type="submit"] {

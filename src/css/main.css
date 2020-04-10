@@ -39,6 +39,12 @@ body {
       margin-bottom: 5px;
       font-weight: bold;
       color: #4d4d4d; }
+    .home .filter-div .propos-div {
+      margin-bottom: 10px;
+      font-size: 1em;
+      color: #333333; }
+      .home .filter-div .propos-div #number {
+        font-weight: bold; }
     .home .filter-div .submit-div {
       margin-top: 15px; }
       .home .filter-div .submit-div input[type="submit"] {

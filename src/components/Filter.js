@@ -91,14 +91,22 @@ function Filter(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    /*props.setFilter(
-      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=10&city_id=10&district_id=15187&district_id=15189&district_id=15188&characteristic[209][from]=1&characteristic[209][to]=3&characteristic[214][from]=60&characteristic[214][to]=90&characteristic[216][from]=30&characteristic[216][to]=50&characteristic[218][from]=4&characteristic[218][to]=9&characteristic[227][from]=3&characteristic[227][to]=7&characteristic[443]=442&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[242]=239&characteristic[273]=273&characteristic[1437]=1434&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
-    );*/
-    console.log(rooms);
+    const roomsAll = rooms
+      .filter(room => room.clicked === true)
+      .map(room => parseInt(room.value));
+    const roomFrom = Math.min(...roomsAll);
+    const roomTo = Math.max(...roomsAll);
+    props.setFilter(
+      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=10&city_id=10&district_id=15187&district_id=15189&district_id=15188&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[214][from]=60&characteristic[214][to]=90&characteristic[216][from]=30&characteristic[216][to]=50&characteristic[218][from]=4&characteristic[218][to]=9&characteristic[227][from]=3&characteristic[227][to]=7&characteristic[443]=442&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[242]=239&characteristic[273]=273&characteristic[1437]=1434&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
+    );
+    //console.log(rooms);
   }
 
   return (
     <form onSubmit={onSubmit}>
+      <div className="propos-div">
+        <span id="number">{props.itemCount}</span> предложений
+      </div>
       <label htmlFor="priceFrom" id="price-label">
         Цена
       </label>
