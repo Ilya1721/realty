@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 
+import MainInfo from "./MainInfo";
+import Characteristics from "./Characteristics";
+
 function Details(props) {
   let { id } = useParams();
   const [poster, setPoster] = useState();
@@ -15,6 +18,9 @@ function Details(props) {
   const [checked, setChecked] = useState(isInWish);
   const [photos, setPhotos] = useState([]);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const MAIN_INFO = "mainInfo";
+  const CHARACTERISTICS = "characteristics";
+  const [currentTab, setCurrentTab] = useState(MAIN_INFO);
 
   function setStyle() {
     return checked ? "checked" : "";
@@ -41,16 +47,37 @@ function Details(props) {
     }
   }
 
+  function onMainInfoTab() {
+    if (currentTab !== MAIN_INFO) {
+      setCurrentTab(MAIN_INFO);
+    }
+  }
+
+  function onCharacteristicsTab() {
+    if (currentTab !== CHARACTERISTICS) {
+      setCurrentTab(CHARACTERISTICS);
+    }
+  }
+
+  function setTabText() {
+    if (currentTab === MAIN_INFO) return <MainInfo poster={poster} />;
+    else if (currentTab === CHARACTERISTICS)
+      return <Characteristics poster={poster} />;
+  }
+
+  function setMainInfoStyle() {
+    if (currentTab === MAIN_INFO) {
+      return "checked";
+    }
+  }
+
+  function setCharacteristicsStyle() {
+    if (currentTab === CHARACTERISTICS) {
+      return "checked";
+    }
+  }
+
   useEffect(() => {
-    /*const fetchData = async () => {
-      const res = await axios
-        .get(
-          `https://developers.ria.com/dom/info/${id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
-        )
-        .catch(err => console.log(err));
-      setPoster(res.data);
-    };
-    fetchData();*/
     axios
       .get(
         `https://developers.ria.com/dom/info/${id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
@@ -96,6 +123,25 @@ function Details(props) {
               <i className="fas fa-arrow-right"></i>
             </button>
           </div>
+        </div>
+        <div className="tabs">
+          <div className="button-div">
+            <button
+              onClick={onMainInfoTab}
+              type="button"
+              className={`tab-btn ${setMainInfoStyle()}`}
+            >
+              Основна інформація
+            </button>
+            <button
+              onClick={onCharacteristicsTab}
+              type="button"
+              className={`tab-btn ${setCharacteristicsStyle()}`}
+            >
+              Характеристики
+            </button>
+          </div>
+          {setTabText()}
         </div>
       </div>
     );

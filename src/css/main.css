@@ -66,6 +66,25 @@ body {
       .slider .container .btn-right:focus {
         outline: none; }
 
+.charact-div {
+  margin-top: 30px;
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500px;
+  border-bottom: 1px solid #999999; }
+  .charact-div i {
+    font-size: 0.8em;
+    color: #236699;
+    margin-right: 5px; }
+  .charact-div .left {
+    color: #4d4d4d; }
+  .charact-div .right {
+    color: #0d0d0d; }
+  .charact-div div {
+    margin-bottom: 15px; }
+
 .details {
   width: 960px;
   margin: 50px auto; }
@@ -84,6 +103,52 @@ body {
     margin-top: 25px;
     font-size: 2em;
     color: #333333; }
+  .details .tabs {
+    width: 620px;
+    margin: auto; }
+    .details .tabs .button-div .tab-btn {
+      font-size: 1em;
+      width: 200px;
+      padding: 5px 10px;
+      border: 0;
+      border-bottom: 1px solid grey;
+      background: #cccccc; }
+      .details .tabs .button-div .tab-btn:first-child {
+        border-right: 1px solid grey; }
+      .details .tabs .button-div .tab-btn:focus {
+        outline: none; }
+      .details .tabs .button-div .tab-btn:hover {
+        background: #b3b3b3; }
+      .details .tabs .button-div .tab-btn.checked {
+        color: #fff;
+        background: #17a2b8; }
+        .details .tabs .button-div .tab-btn.checked:hover {
+          background: #138496; }
+    .details .tabs .info-header {
+      display: flex;
+      justify-content: center;
+      font-size: 1.4em;
+      margin-bottom: 5px; }
+    .details .tabs .description {
+      margin-top: 15px; }
+      .details .tabs .description .desc-body {
+        font-size: 1.1em; }
+    .details .tabs .price .price-body, .details .tabs .home .poster-div .poster .info-div .rooms .price-body, .home .poster-div .poster .info-div .details .tabs .rooms .price-body {
+      color: #009a00;
+      font-size: 1.6em;
+      font-weight: bold; }
+      .details .tabs .price .price-body .second-part, .details .tabs .home .poster-div .poster .info-div .rooms .price-body .second-part, .home .poster-div .poster .info-div .details .tabs .rooms .price-body .second-part {
+        color: #898989;
+        font-size: 1.2rem; }
+        .details .tabs .price .price-body .second-part i, .details .tabs .home .poster-div .poster .info-div .rooms .price-body .second-part i, .home .poster-div .poster .info-div .details .tabs .rooms .price-body .second-part i {
+          font-size: 0.08em;
+          padding: 10px 5px;
+          vertical-align: middle; }
+        .details .tabs .price .price-body .second-part .alt, .details .tabs .home .poster-div .poster .info-div .rooms .price-body .second-part .alt, .home .poster-div .poster .info-div .details .tabs .rooms .price-body .second-part .alt {
+          font-weight: normal;
+          color: #333333; }
+    .details .tabs .address .address-body {
+      font-size: 1.1em; }
 
 .star-button {
   background: #fff;
