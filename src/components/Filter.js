@@ -3,29 +3,10 @@ import React, { useState } from "react";
 import RoomButton from "./RoomButton";
 
 function Filter(props) {
-  const [price, setPrice] = useState({
-    from: "0",
-    to: "0"
-  });
-  const [currencyType, setCurrencyType] = useState("$");
-  const [rooms, setRooms] = useState([
-    {
-      value: "1",
-      clicked: false
-    },
-    {
-      value: "2",
-      clicked: false
-    },
-    {
-      value: "3",
-      clicked: true
-    },
-    {
-      value: "4+",
-      clicked: false
-    }
-  ]);
+  const localStorage = window.localStorage;
+  const [price, setPrice] = useState(JSON.parse(localStorage.getItem("price")));
+  const [currencyType, setCurrencyType] = useState("239");
+  const [rooms, setRooms] = useState(JSON.parse(localStorage.getItem("rooms")));
 
   function onChangeFrom(e) {
     if (e.target.value !== "") {
@@ -96,10 +77,13 @@ function Filter(props) {
       .map(room => parseInt(room.value));
     const roomFrom = Math.min(...roomsAll);
     const roomTo = Math.max(...roomsAll);
+    localStorage.setItem("rooms", JSON.stringify(rooms));
+    localStorage.setItem("price", JSON.stringify(price));
+    console.log(price.from);
+    console.log(price.to);
     props.setFilter(
-      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=10&city_id=10&district_id=15187&district_id=15189&district_id=15188&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[214][from]=60&characteristic[214][to]=90&characteristic[216][from]=30&characteristic[216][to]=50&characteristic[218][from]=4&characteristic[218][to]=9&characteristic[227][from]=3&characteristic[227][to]=7&characteristic[443]=442&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[242]=239&characteristic[273]=273&characteristic[1437]=1434&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
+      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
     );
-    //console.log(rooms);
   }
 
   return (
@@ -129,9 +113,9 @@ function Filter(props) {
         onChange={onCurrencyChange}
         name="currency_type"
       >
-        <option value="$">$</option>
-        <option value="грн.">грн.</option>
-        <option value="€">€</option>
+        <option value="239">$</option>
+        <option value="240">грн.</option>
+        <option value="241">€</option>
       </select>
       <label htmlFor="rooms_count" id="room-label">
         Комнат

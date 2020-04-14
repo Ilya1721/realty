@@ -7,7 +7,13 @@ function Poster(props) {
     0,
     poster.beautiful_url.lastIndexOf("-")
   );
-  const photoId = Object.keys(poster.photos)[0];
+
+  let photoId = null;
+  let photoSrc = "./no-image.png";
+  if (poster.photos !== undefined) {
+    photoId = Object.keys(poster.photos)[0];
+    photoSrc = `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`;
+  }
   var dateOptions = {
     year: "numeric",
     month: "numeric",
@@ -39,10 +45,7 @@ function Poster(props) {
     <div className="poster">
       <div className="img-div">
         <Link to={`/poster/${poster.realty_id}`}>
-          <img
-            src={`https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`}
-            alt="img"
-          />
+          <img src={photoSrc} alt="img" />
         </Link>
       </div>
       <div className="info-div">
@@ -76,7 +79,7 @@ function Poster(props) {
           </span>
         </div>
         <div className="description">
-          {poster.description.substring(0, 40)}...
+          {poster.description && poster.description.substring(0, 40)}...
         </div>
         <div className="date">
           <i className="far fa-clock"></i>

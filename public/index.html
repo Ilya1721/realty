@@ -44,4 +44,16 @@
     src="https://kit.fontawesome.com/ff26e78eae.js"
     crossorigin="anonymous"
   ></script>
+  <script>
+    var header = document.getElementById("header");
+    var sticky = header.offsetTop;
+
+    window.onscroll = function() {
+      if (window.pageYOffset > sticky + 150) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    };
+  </script>
 </html>

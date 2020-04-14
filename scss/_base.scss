@@ -3,8 +3,19 @@ body {
   min-height: 100vh;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 150px;
+}
+
 .header {
   background: $header-color;
+  z-index: 10;
   .container {
     padding: 6px 7px;
     height: 30px;
@@ -89,7 +100,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 500px;
+  width: 650px;
   border-bottom: 1px solid lighten(#000, 60);
   i {
     font-size: 0.8em;
@@ -101,6 +112,12 @@ body {
   }
   .right {
     color: lighten(#000, 5);
+  }
+  .left,
+  .right {
+    div {
+      height: 35px;
+    }
   }
   div {
     margin-bottom: 15px;
@@ -306,6 +323,7 @@ body {
   }
 
   .poster-div {
+    margin-bottom: 150px;
     .poster {
       border-bottom: 1px solid lighten(#000, 85);
       padding: 25px 0;

@@ -19,6 +19,7 @@ function WishList(props) {
               addToWishList={props.addToWishList}
               deleteFromWishList={props.deleteFromWishList}
               poster={item}
+              isInWish={true}
             />
           ))}
         </div>

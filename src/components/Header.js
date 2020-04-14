@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Header() {
   return (
-    <div className="header">
+    <div id="header" className="header">
       <div className="container">
         <span>Вишинський І.О.</span>
         <NavLink exact to="/">

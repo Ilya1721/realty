@@ -9,14 +9,8 @@ function Details(props) {
   let { id } = useParams();
   const [poster, setPoster] = useState();
   const localStorage = window.localStorage;
-  let isInWish = false;
-  if (localStorage.getItem("wishList") !== null && poster !== undefined) {
-    const list = JSON.parse(localStorage.getItem("wishList"));
-    const ids = list.map(item => item._id);
-    isInWish = ids.includes(poster._id);
-  }
-  const [checked, setChecked] = useState(isInWish);
-  const [photos, setPhotos] = useState([]);
+  const [checked, setChecked] = useState(false);
+  const [photos, setPhotos] = useState(["./no-image.png"]);
   const [photoIndex, setPhotoIndex] = useState(0);
   const MAIN_INFO = "mainInfo";
   const CHARACTERISTICS = "characteristics";
@@ -88,11 +82,18 @@ function Details(props) {
           0,
           res.data.beautiful_url.lastIndexOf("-")
         );
-        const photos = Object.keys(res.data.photos).map(
-          id =>
-            `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${id}fl.jpg`
-        );
-        setPhotos(photos);
+        let posterPhotos = ["./no-image.png"];
+        if (res.data.photos !== undefined) {
+          posterPhotos = Object.keys(res.data.photos).map(
+            id =>
+              `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${id}fl.jpg`
+          );
+        }
+        setPhotos(posterPhotos);
+        console.log(photos);
+        const list = JSON.parse(localStorage.getItem("wishList"));
+        const ids = list.map(item => item._id);
+        setChecked(ids.includes(res.data._id));
       })
       .catch(err => console.log(err));
   }, [id]);
