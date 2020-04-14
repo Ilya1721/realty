@@ -10,8 +10,9 @@ function Details(props) {
   const [poster, setPoster] = useState();
   const localStorage = window.localStorage;
   const [checked, setChecked] = useState(false);
-  const [photos, setPhotos] = useState(["./no-image.png"]);
+  const [photos, setPhotos] = useState(["../no-image.png"]);
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [imgError, setImgError] = useState(false);
   const MAIN_INFO = "mainInfo";
   const CHARACTERISTICS = "characteristics";
   const [currentTab, setCurrentTab] = useState(MAIN_INFO);
@@ -71,6 +72,11 @@ function Details(props) {
     }
   }
 
+  function onImgError() {
+    setPhotos(["../no-image.png"]);
+    setImgError(true);
+  }
+
   useEffect(() => {
     axios
       .get(
@@ -82,15 +88,15 @@ function Details(props) {
           0,
           res.data.beautiful_url.lastIndexOf("-")
         );
-        let posterPhotos = ["./no-image.png"];
-        if (res.data.photos !== undefined) {
+        let posterPhotos = ["../no-image.png"];
+        if (res.data.photos !== undefined && !imgError) {
           posterPhotos = Object.keys(res.data.photos).map(
             id =>
               `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${id}fl.jpg`
           );
         }
         setPhotos(posterPhotos);
-        console.log(photos);
+        //console.log(photos);
         const list = JSON.parse(localStorage.getItem("wishList"));
         const ids = list.map(item => item._id);
         setChecked(ids.includes(res.data._id));
@@ -109,14 +115,14 @@ function Details(props) {
           </div>
           <div className="name">
             {poster.rooms_count} комнатная квартира {poster.total_square_meters}{" "}
-            кв.м. {poster.district_type_name} {poster.district_name}{" "}
-            {poster.street_name}
+            кв.м. {poster.district_type_name || ""} {poster.district_name || ""}{" "}
+            {poster.street_name || ""}
           </div>
         </div>
         <div id="photo-header">Фото</div>
         <div className="slider">
           <div className="container">
-            <img src={photos[photoIndex]} alt="img" />
+            <img src={photos[photoIndex]} onError={onImgError} alt="img" />
             <button onClick={photoLeft} className="btn-left">
               <i className="fas fa-arrow-left"></i>
             </button>

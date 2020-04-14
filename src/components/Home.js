@@ -39,12 +39,12 @@ function Home(props) {
           .all(reqArr)
           .then(responses => {
             flats = responses.map(res => res.data);
-            console.log(responses);
+            //console.log(responses);
             console.log(flats);
             setState({
               items: flats
             });
-            if (res.data.items[0] === undefined) {
+            if (flats[0] === undefined) {
               setIsEmpty(true);
             } else {
               setIsEmpty(false);

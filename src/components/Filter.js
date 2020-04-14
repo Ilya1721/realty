@@ -72,15 +72,24 @@ function Filter(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    const roomsAll = rooms
+    let roomsAll = rooms
       .filter(room => room.clicked === true)
       .map(room => parseInt(room.value));
+    if (roomsAll[0] === undefined) {
+      roomsAll = rooms
+        .map(room => ({
+          value: parseInt(room.value),
+          clicked: true
+        }))
+        .map(item => item.value);
+    }
+    console.log(roomsAll);
     const roomFrom = Math.min(...roomsAll);
     const roomTo = Math.max(...roomsAll);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     localStorage.setItem("price", JSON.stringify(price));
-    console.log(price.from);
-    console.log(price.to);
+    console.log(roomFrom);
+    console.log(roomTo);
     props.setFilter(
       `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
     );

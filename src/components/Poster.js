@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Poster(props) {
   const poster = props.poster;
@@ -9,10 +10,13 @@ function Poster(props) {
   );
 
   let photoId = null;
-  let photoSrc = "./no-image.png";
-  if (poster.photos !== undefined) {
+  const [photoSrc, setPhotoSrc] = useState(undefined);
+
+  if (poster.photos !== undefined && photoSrc === undefined) {
     photoId = Object.keys(poster.photos)[0];
-    photoSrc = `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`;
+    setPhotoSrc(
+      `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`
+    );
   }
   var dateOptions = {
     year: "numeric",
@@ -41,19 +45,23 @@ function Poster(props) {
     }
   }
 
+  function onImgError() {
+    setPhotoSrc("./no-image.png");
+  }
+
   return (
     <div className="poster">
       <div className="img-div">
         <Link to={`/poster/${poster.realty_id}`}>
-          <img src={photoSrc} alt="img" />
+          <img src={photoSrc} onError={onImgError} alt="img" />
         </Link>
       </div>
       <div className="info-div">
         <div className="name-div">
           <div className="name">
             <Link to={`/poster/${poster.realty_id}`}>
-              {poster.district_type_name} {poster.district_name}{" "}
-              {poster.street_name}
+              {poster.district_type_name || ""} {poster.district_name || ""}{" "}
+              {poster.street_name || ""}
             </Link>
           </div>
           <div>
@@ -79,7 +87,9 @@ function Poster(props) {
           </span>
         </div>
         <div className="description">
-          {poster.description && poster.description.substring(0, 40)}...
+          {(poster.description && poster.description.substring(0, 40)) ||
+            (poster.description_uk && poster.description_uk.substring(0, 40))}
+          ...
         </div>
         <div className="date">
           <i className="far fa-clock"></i>

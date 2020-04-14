@@ -7,7 +7,9 @@ function MainInfo(props) {
     <div>
       <div className="description">
         <div className="info-header">Опис</div>
-        <div className="desc-body">{poster.description}</div>
+        <div className="desc-body">
+          {poster.description || poster.description_uk}
+        </div>
       </div>
       <div className="price">
         <div className="info-header">Ціна</div>
@@ -22,8 +24,8 @@ function MainInfo(props) {
       <div className="address">
         <div className="info-header">Адреса</div>
         <div className="address-body">
-          {`${poster.district_name} ${poster.district_type_name}
-            ${poster.street_name} / ${poster.building_number_str}`}
+          {`${poster.district_name || ""} ${poster.district_type_name || ""}
+            ${poster.street_name || ""} / ${poster.building_number_str || ""}`}
         </div>
       </div>
     </div>
