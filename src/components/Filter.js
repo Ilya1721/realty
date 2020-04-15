@@ -85,8 +85,6 @@ function Filter(props) {
     }
     const roomFrom = Math.min(...roomsAll);
     const roomTo = Math.max(...roomsAll);
-    console.log(roomFrom);
-    console.log(roomTo);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     localStorage.setItem("price", JSON.stringify(price));
     props.setFilter(

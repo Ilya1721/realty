@@ -33,8 +33,6 @@ function Home(props) {
         if (ids.length > limit) {
           ids.length = limit;
         }
-        console.log(req);
-        console.log(ids);
         let reqArr = ids.map((id) =>
           axios.get(
             `https://developers.ria.com/dom/info/${id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
@@ -44,7 +42,6 @@ function Home(props) {
           .all(reqArr)
           .then((responses) => {
             flats = responses.map((res) => res.data);
-            console.log(flats);
             setState({
               items: flats,
             });

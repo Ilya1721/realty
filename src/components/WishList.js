@@ -4,13 +4,12 @@ import Poster from "./Poster";
 
 function WishList(props) {
   const posters = JSON.parse(localStorage.getItem("wishList"));
-  if (posters !== undefined) {
+  if (posters !== null) {
     return (
       <div className="home">
         <div className="filter-div">
           <div className="propos-div">
-            <span id="number">{(posters && posters.length) || 0}</span>{" "}
-            предложений
+            <span id="number">{posters.length}</span> предложений
           </div>
         </div>
         <div className="poster-div">
