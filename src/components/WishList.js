@@ -9,11 +9,12 @@ function WishList(props) {
       <div className="home">
         <div className="filter-div">
           <div className="propos-div">
-            <span id="number">{posters.length}</span> предложений
+            <span id="number">{(posters && posters.length) || 0}</span>{" "}
+            предложений
           </div>
         </div>
         <div className="poster-div">
-          {posters.map(item => (
+          {posters.map((item) => (
             <Poster
               key={item._id}
               addToWishList={props.addToWishList}
