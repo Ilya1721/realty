@@ -12,12 +12,12 @@ function Filter(props) {
     if (e.target.value !== "") {
       setPrice({
         from: parseInt(e.target.value),
-        to: price.to
+        to: price.to,
       });
     } else {
       setPrice({
         from: "0",
-        to: price.to
+        to: price.to,
       });
     }
   }
@@ -26,12 +26,12 @@ function Filter(props) {
     if (e.target.value !== "") {
       setPrice({
         from: price.from,
-        to: parseInt(e.target.value)
+        to: parseInt(e.target.value),
       });
     } else {
       setPrice({
         from: price.from,
-        to: "0"
+        to: "0",
       });
     }
   }
@@ -42,11 +42,11 @@ function Filter(props) {
 
   function addRoom(roomValue) {
     setRooms(
-      rooms.map(room => {
+      rooms.map((room) => {
         if (room.value === roomValue) {
           return {
             value: room.value,
-            clicked: true
+            clicked: true,
           };
         } else {
           return room;
@@ -57,11 +57,11 @@ function Filter(props) {
 
   function deleteRoom(roomValue) {
     setRooms(
-      rooms.map(room => {
+      rooms.map((room) => {
         if (room.value === roomValue) {
           return {
             value: room.value,
-            clicked: false
+            clicked: false,
           };
         } else {
           return room;
@@ -73,23 +73,22 @@ function Filter(props) {
   function onSubmit(e) {
     e.preventDefault();
     let roomsAll = rooms
-      .filter(room => room.clicked === true)
-      .map(room => parseInt(room.value));
+      .filter((room) => room.clicked === true)
+      .map((room) => parseInt(room.value));
     if (roomsAll[0] === undefined) {
       roomsAll = rooms
-        .map(room => ({
+        .map((room) => ({
           value: parseInt(room.value),
-          clicked: true
+          clicked: true,
         }))
-        .map(item => item.value);
+        .map((item) => item.value);
     }
-    console.log(roomsAll);
     const roomFrom = Math.min(...roomsAll);
     const roomTo = Math.max(...roomsAll);
-    localStorage.setItem("rooms", JSON.stringify(rooms));
-    localStorage.setItem("price", JSON.stringify(price));
     console.log(roomFrom);
     console.log(roomTo);
+    localStorage.setItem("rooms", JSON.stringify(rooms));
+    localStorage.setItem("price", JSON.stringify(price));
     props.setFilter(
       `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
     );
@@ -129,7 +128,7 @@ function Filter(props) {
       <label htmlFor="rooms_count" id="room-label">
         Комнат
       </label>
-      {rooms.map(room => (
+      {rooms.map((room) => (
         <RoomButton
           clicked={room.clicked}
           key={room.value}

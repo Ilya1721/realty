@@ -12,7 +12,7 @@ function App() {
   if (localStorage.getItem("req") === null) {
     localStorage.setItem(
       "req",
-      "https://developers.ria.com/dom/search?category=1&operation_type=1&state_id=4&characteristic[234][from]=20000&characteristic[234][to]=20000&characteristic[242]=239&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill&realty_type=2&city_id=4"
+      "https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[242]=239&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
     );
   }
   if (localStorage.getItem("rooms") === null) {
@@ -53,7 +53,6 @@ function App() {
     if (wishList !== null) {
       const ids = wishList.map(item => item._id);
       if (!ids.includes(poster._id)) {
-        localStorage.clear();
         localStorage.setItem("wishList", JSON.stringify([...wishList, poster]));
       }
     } else {
@@ -63,7 +62,6 @@ function App() {
 
   const deleteFromWishList = poster => {
     const wishList = JSON.parse(localStorage.getItem("wishList"));
-    localStorage.clear();
     localStorage.setItem(
       "wishList",
       JSON.stringify(wishList.filter(item => item._id !== poster._id))

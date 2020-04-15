@@ -10,21 +10,21 @@ function Characteristics(props) {
       .get(
         "https://developers.ria.com/dom/options?category=1&realty_type=2&operation_type=1&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
       )
-      .then(res => setCharacteristics(res.data))
-      .catch(err => console.log(err));
+      .then((res) => setCharacteristics(res.data))
+      .catch((err) => console.log(err));
   }, []);
 
   if (characteristics) {
-    let items = characteristics.map(characteristic => characteristic.items);
+    let items = characteristics.map((characteristic) => characteristic.items);
     let itemObjects = [];
-    items.forEach(arr => arr.map(item => itemObjects.push(item)));
-    itemObjects = itemObjects.filter(item =>
+    items.forEach((arr) => arr.map((item) => itemObjects.push(item)));
+    itemObjects = itemObjects.filter((item) =>
       Object.keys(poster.characteristics_values).includes(
         item.characteristic_id.toString()
       )
     );
 
-    const characteristicArr = itemObjects.map(item => {
+    const characteristicArr = itemObjects.map((item) => {
       let value = poster.characteristics_values[item.characteristic_id];
       if (value !== undefined) {
         if (item.characteristic_id === value) {
@@ -41,7 +41,7 @@ function Characteristics(props) {
         return {
           type: item.name,
           value: value,
-          sufix: sufix
+          sufix: sufix,
         };
       }
     });
@@ -49,14 +49,14 @@ function Characteristics(props) {
     return (
       <div className="charact-div">
         <div className="left">
-          {characteristicArr.map(item => (
+          {characteristicArr.map((item) => (
             <div key={item.type}>
               <i className="fas fa-check"></i> {item.type}
             </div>
           ))}
         </div>
         <div className="right">
-          {characteristicArr.map(item => (
+          {characteristicArr.map((item) => (
             <div key={item.type}>
               {item.value} {item.sufix}
             </div>

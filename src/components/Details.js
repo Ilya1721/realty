@@ -82,7 +82,7 @@ function Details(props) {
       .get(
         `https://developers.ria.com/dom/info/${id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
       )
-      .then(res => {
+      .then((res) => {
         setPoster(res.data);
         const photoUrl = res.data.beautiful_url.substring(
           0,
@@ -91,17 +91,16 @@ function Details(props) {
         let posterPhotos = ["../no-image.png"];
         if (res.data.photos !== undefined && !imgError) {
           posterPhotos = Object.keys(res.data.photos).map(
-            id =>
+            (id) =>
               `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${id}fl.jpg`
           );
         }
         setPhotos(posterPhotos);
-        //console.log(photos);
         const list = JSON.parse(localStorage.getItem("wishList"));
-        const ids = list.map(item => item._id);
+        const ids = list.map((item) => item._id);
         setChecked(ids.includes(res.data._id));
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, [id]);
 
   if (poster !== undefined) {

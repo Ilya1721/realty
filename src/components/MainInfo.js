@@ -14,7 +14,7 @@ function MainInfo(props) {
       <div className="price">
         <div className="info-header">Ціна</div>
         <div className="price-body">
-          {poster.priceArr[1]} {poster.currency_type}
+          {poster.priceArr[1]} $
           <span className="second-part">
             <i className="fas fa-circle"></i>
             <span className="alt">{poster.priceArr[3]} грн</span>

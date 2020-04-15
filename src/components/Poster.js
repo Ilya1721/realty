@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 function Poster(props) {
   const poster = props.poster;
@@ -10,27 +9,33 @@ function Poster(props) {
   );
 
   let photoId = null;
-  const [photoSrc, setPhotoSrc] = useState(undefined);
+  const [photoSrc, setPhotoSrc] = useState("./no-image.png");
+  const [imgError, setImgError] = useState(false);
 
-  if (poster.photos !== undefined && photoSrc === undefined) {
-    photoId = Object.keys(poster.photos)[0];
-    setPhotoSrc(
-      `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`
-    );
-  }
   var dateOptions = {
     year: "numeric",
     month: "numeric",
-    day: "numeric"
+    day: "numeric",
   };
+
   const localStorage = window.localStorage;
   let isInWish = false;
-  if (localStorage.getItem("wishList") !== null) {
-    const list = JSON.parse(localStorage.getItem("wishList"));
-    const ids = list.map(item => item._id);
-    isInWish = ids.includes(poster._id);
-  }
   const [checked, setChecked] = useState(isInWish);
+
+  useEffect(() => {
+    if (poster.photos !== undefined && !imgError) {
+      photoId = Object.keys(poster.photos)[0];
+      setPhotoSrc(
+        `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${photoId}fl.jpg`
+      );
+    }
+    if (localStorage.getItem("wishList") !== null) {
+      const list = JSON.parse(localStorage.getItem("wishList"));
+      const ids = list.map((item) => item._id);
+      isInWish = ids.includes(poster._id);
+    }
+    setChecked(isInWish);
+  }, []);
 
   function setStyle() {
     return checked ? "checked" : "";
@@ -47,6 +52,7 @@ function Poster(props) {
 
   function onImgError() {
     setPhotoSrc("./no-image.png");
+    setImgError(true);
   }
 
   return (
@@ -71,7 +77,7 @@ function Poster(props) {
           </div>
         </div>
         <div className="price">
-          {poster.priceArr[1]} {poster.currency_type}
+          {poster.priceArr[1]} $
           <span className="second-part">
             <i className="fas fa-circle"></i>
             <span className="alt">{poster.priceArr[3]} грн</span>
