@@ -12,7 +12,7 @@ function App() {
   if (localStorage.getItem("req") === null) {
     localStorage.setItem(
       "req",
-      "https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[242]=239&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
+      "https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[242]=239&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
     );
   }
   if (localStorage.getItem("rooms") === null) {
@@ -21,20 +21,20 @@ function App() {
       JSON.stringify([
         {
           value: "1",
-          clicked: false
+          clicked: false,
         },
         {
           value: "2",
-          clicked: false
+          clicked: false,
         },
         {
           value: "3",
-          clicked: false
+          clicked: false,
         },
         {
           value: "4+",
-          clicked: false
-        }
+          clicked: false,
+        },
       ])
     );
   }
@@ -43,15 +43,15 @@ function App() {
       "price",
       JSON.stringify({
         from: "0",
-        to: "0"
+        to: "0",
       })
     );
   }
 
-  const addToWishList = poster => {
+  const addToWishList = (poster) => {
     const wishList = JSON.parse(localStorage.getItem("wishList"));
     if (wishList !== null) {
-      const ids = wishList.map(item => item._id);
+      const ids = wishList.map((item) => item._id);
       if (!ids.includes(poster._id)) {
         localStorage.setItem("wishList", JSON.stringify([...wishList, poster]));
       }
@@ -60,11 +60,11 @@ function App() {
     }
   };
 
-  const deleteFromWishList = poster => {
+  const deleteFromWishList = (poster) => {
     const wishList = JSON.parse(localStorage.getItem("wishList"));
     localStorage.setItem(
       "wishList",
-      JSON.stringify(wishList.filter(item => item._id !== poster._id))
+      JSON.stringify(wishList.filter((item) => item._id !== poster._id))
     );
   };
 

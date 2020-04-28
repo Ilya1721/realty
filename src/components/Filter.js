@@ -5,7 +5,6 @@ import RoomButton from "./RoomButton";
 function Filter(props) {
   const localStorage = window.localStorage;
   const [price, setPrice] = useState(JSON.parse(localStorage.getItem("price")));
-  const [currencyType, setCurrencyType] = useState("239");
   const [rooms, setRooms] = useState(JSON.parse(localStorage.getItem("rooms")));
 
   function onChangeFrom(e) {
@@ -34,10 +33,6 @@ function Filter(props) {
         to: "0",
       });
     }
-  }
-
-  function onCurrencyChange(e) {
-    setCurrencyType(e.target.value);
   }
 
   function addRoom(roomValue) {
@@ -83,12 +78,13 @@ function Filter(props) {
         }))
         .map((item) => item.value);
     }
+    const currencyType = e.target.currency_type.value;
     const roomFrom = Math.min(...roomsAll);
     const roomTo = Math.max(...roomsAll);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     localStorage.setItem("price", JSON.stringify(price));
     props.setFilter(
-      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&characteristic[273]=273&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
+      `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
     );
   }
 
@@ -114,11 +110,7 @@ function Filter(props) {
         name="priceTo"
         type="text"
       />
-      <select
-        value={currencyType}
-        onChange={onCurrencyChange}
-        name="currency_type"
-      >
+      <select name="currency_type">
         <option value="239">$</option>
         <option value="240">грн.</option>
         <option value="241">€</option>

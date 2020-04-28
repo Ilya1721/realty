@@ -1,97 +1,83 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { getAll } from "../api";
 
 import Poster from "./Poster";
 import Filter from "./Filter";
 
-function Home(props) {
-  const [state, setState] = useState({
-    items: [],
-  });
+class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      isEmpty: false,
+      limit: 15,
+      req: localStorage.getItem("req"),
+    };
+  }
 
-  const [isEmpty, setIsEmpty] = useState(false);
-  const limit = 15;
-
-  const localStorage = window.localStorage;
-  const [req, setReq] = useState(localStorage.getItem("req"));
-
-  const setFilter = (req) => {
-    setReq(req);
+  setFilter = (req) => {
+    this.setState({
+      req: req,
+    });
     localStorage.setItem("req", req);
   };
 
-  useEffect(() => {
-    setState({
-      items: [],
-    });
-    let ids = [];
-    let flats = [];
-    axios
-      .get(req)
-      .then((res) => {
-        ids = res.data.items;
-        if (ids.length > limit) {
-          ids.length = limit;
-        }
-        let reqArr = ids.map((id) =>
-          axios.get(
-            `https://developers.ria.com/dom/info/${id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
-          )
-        );
-        axios
-          .all(reqArr)
-          .then((responses) => {
-            flats = responses.map((res) => res.data);
-            setState({
-              items: flats,
-            });
-            if (flats[0] === undefined) {
-              setIsEmpty(true);
-            } else {
-              setIsEmpty(false);
-            }
-          })
-          .catch((err) => console.log(err));
+  componentDidMount() {
+    getAll(this.state.req, this.state.limit).then((res) =>
+      this.setState({
+        items: res.items,
+        isEmpty: res.isEmpty,
       })
-      .catch((err) => console.log(err));
-  }, [req]);
+    );
+  }
 
-  if (state.items[0] !== undefined) {
-    return (
-      <div className="home">
-        <div className="filter-div">
-          <Filter setFilter={setFilter} itemCount={state.items.length} />
-        </div>
-        <div className="poster-div">
-          {state.items.map((item) => (
-            <Poster
-              key={item._id}
-              addToWishList={props.addToWishList}
-              deleteFromWishList={props.deleteFromWishList}
-              poster={item}
+  render() {
+    if (this.state.items[0] !== undefined) {
+      return (
+        <div className="home">
+          <div className="filter-div">
+            <Filter
+              setFilter={this.setFilter}
+              itemCount={this.state.items.length}
             />
-          ))}
+          </div>
+          <div className="poster-div">
+            {this.state.items.map((item) => (
+              <Poster
+                key={item._id}
+                addToWishList={this.props.addToWishList}
+                deleteFromWishList={this.props.deleteFromWishList}
+                poster={item}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    );
-  } else if (isEmpty) {
-    return (
-      <div className="home">
-        <div className="filter-div">
-          <Filter setFilter={setFilter} itemCount={state.items.length} />
+      );
+    } else if (this.state.isEmpty) {
+      return (
+        <div className="home">
+          <div className="filter-div">
+            <Filter
+              setFilter={this.setFilter}
+              itemCount={this.state.items.length}
+            />
+          </div>
+          <div className="poster-div">Результатів не знайдено</div>
         </div>
-        <div className="poster-div">Результатів не знайдено</div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="home">
-        <div className="filter-div">
-          <Filter setFilter={setFilter} itemCount={state.items.length} />
+      );
+    } else {
+      return (
+        <div className="home">
+          <div className="filter-div">
+            <Filter
+              setFilter={this.setFilter}
+              itemCount={this.state.items.length}
+            />
+          </div>
+          <div className="poster-div">Loading...</div>
         </div>
-        <div className="poster-div">Loading...</div>
-      </div>
-    );
+      );
+    }
   }
 }
 
