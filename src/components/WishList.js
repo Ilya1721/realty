@@ -4,7 +4,7 @@ import Poster from "./Poster";
 
 function WishList(props) {
   const posters = JSON.parse(localStorage.getItem("wishList"));
-  if (posters !== undefined) {
+  if (posters !== null) {
     return (
       <div className="home">
         <div className="filter-div">
