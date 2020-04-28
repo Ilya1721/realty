@@ -77,7 +77,8 @@ function Poster(props) {
           </div>
         </div>
         <div className="price">
-          {poster.priceArr[1]} $
+          {poster.priceArr[props.priceAndCurrency.priceIndex]}{" "}
+          {props.priceAndCurrency.currency.text}
           <span className="second-part">
             <i className="fas fa-circle"></i>
             <span className="alt">{poster.priceArr[3]} грн</span>

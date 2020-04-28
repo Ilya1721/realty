@@ -6,6 +6,15 @@ function Filter(props) {
   const localStorage = window.localStorage;
   const [price, setPrice] = useState(JSON.parse(localStorage.getItem("price")));
   const [rooms, setRooms] = useState(JSON.parse(localStorage.getItem("rooms")));
+  const [currencies, setCurrencies] = useState(
+    JSON.parse(localStorage.getItem("currency"))
+  );
+  const [currentCurrency, setCurrentCurrency] = useState(
+    JSON.parse(localStorage.getItem("currentCurrency"))
+  );
+  const otherCurrencies = currencies.filter(
+    (c) => c.value !== JSON.parse(currentCurrency.value)
+  );
 
   function onChangeFrom(e) {
     if (e.target.value !== "") {
@@ -83,6 +92,15 @@ function Filter(props) {
     const roomTo = Math.max(...roomsAll);
     localStorage.setItem("rooms", JSON.stringify(rooms));
     localStorage.setItem("price", JSON.stringify(price));
+    localStorage.setItem(
+      "currentCurrency",
+      JSON.stringify({
+        index: currencies.find((c) => c.value === JSON.parse(currencyType))
+          .index,
+        value: currencyType,
+        text: currencies.find((c) => c.value === JSON.parse(currencyType)).text,
+      })
+    );
     props.setFilter(
       `https://developers.ria.com/dom/search?category=1&realty_type=2&operation_type=1&state_id=4&city_id=4&page=1&characteristic[234][from]=${price.from}&characteristic[234][to]=${price.to}&characteristic[209][from]=${roomFrom}&characteristic[209][to]=${roomTo}&characteristic[242]=${currencyType}&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`
     );
@@ -111,9 +129,12 @@ function Filter(props) {
         type="text"
       />
       <select name="currency_type">
-        <option value="239">$</option>
-        <option value="240">грн.</option>
-        <option value="241">€</option>
+        <option value={currentCurrency.value}>{currentCurrency.text}</option>
+        {otherCurrencies.map((currency) => (
+          <option key={currency.value} value={currency.value}>
+            {currency.text}
+          </option>
+        ))}
       </select>
       <label htmlFor="rooms_count" id="room-label">
         Комнат

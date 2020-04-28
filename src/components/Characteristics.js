@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { getCharactArr } from "../api";
 
 function Characteristics(props) {
   const [characteristics, setCharacteristics] = useState([]);
   const poster = props.poster;
 
   useEffect(() => {
-    axios
+    getCharactArr(
+      "https://developers.ria.com/dom/options?category=1&realty_type=2&operation_type=1&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
+    )
+      .then((res) => setCharacteristics(res))
+      .catch((err) => console.log(err));
+    /*axios
       .get(
         "https://developers.ria.com/dom/options?category=1&realty_type=2&operation_type=1&api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill"
       )
       .then((res) => setCharacteristics(res.data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
   }, []);
 
   if (characteristics) {

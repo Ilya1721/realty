@@ -57,4 +57,10 @@ export const getOne = async (req, imgError) => {
   return response;
 };
 
-export default { getAll, getOne };
+export const getCharactArr = async (req) => {
+  const res = await axios.get(req);
+
+  return res.data;
+};
+
+export default { getAll, getOne, getCharactArr };
