@@ -43,9 +43,11 @@ export const getOne = async (req, imgError) => {
         `https://cdn.riastatic.com/photosnew/dom/photo/${photoUrl}__${id}fl.jpg`
     );
   }
-  const list = JSON.parse(localStorage.getItem("wishList"));
-  const ids = list.map((item) => item._id);
-  console.log(posterPhotos);
+  let ids = [];
+  if (localStorage.getItem("wishList") !== null) {
+    const list = JSON.parse(localStorage.getItem("wishList"));
+    ids = list.map((item) => item._id);
+  }
   const response = {
     poster: res.data,
     photos: posterPhotos,
