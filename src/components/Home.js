@@ -10,7 +10,8 @@ class Home extends React.Component {
     this.state = {
       items: [],
       isEmpty: false,
-      limit: 15,
+      limit: 1,
+      priceArrIndex: JSON.parse(localStorage.getItem("currentCurrency")).index,
       req: localStorage.getItem("req"),
     };
   }
@@ -20,15 +21,18 @@ class Home extends React.Component {
       req: req,
     });
     localStorage.setItem("req", req);
+    window.location.reload();
   };
 
   componentDidMount() {
-    getAll(this.state.req, this.state.limit).then((res) =>
-      this.setState({
-        items: res.items,
-        isEmpty: res.isEmpty,
-      })
-    );
+    getAll(this.state.req, this.state.limit)
+      .then((res) =>
+        this.setState({
+          items: res.items,
+          isEmpty: res.isEmpty,
+        })
+      )
+      .catch((err) => console.log(err));
   }
 
   render() {
@@ -48,6 +52,10 @@ class Home extends React.Component {
                 addToWishList={this.props.addToWishList}
                 deleteFromWishList={this.props.deleteFromWishList}
                 poster={item}
+                priceAndCurrency={{
+                  priceIndex: this.state.priceArrIndex,
+                  currency: JSON.parse(localStorage.getItem("currentCurrency")),
+                }}
               />
             ))}
           </div>

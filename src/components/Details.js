@@ -97,13 +97,15 @@ class Details extends React.Component {
     getOne(
       `https://developers.ria.com/dom/info/${this.props.match.params.id}?api_key=JdDY2bvaHSqTjAN5siRZY03ekOMdMjYhBrrjlill`,
       this.state.imgError
-    ).then((res) =>
-      this.setState({
-        poster: res.poster,
-        photos: res.photos,
-        checked: res.checked,
-      })
-    );
+    )
+      .then((res) =>
+        this.setState({
+          poster: res.poster,
+          photos: res.photos,
+          checked: res.checked,
+        })
+      )
+      .catch((err) => console.log(err));
   }
 
   render() {

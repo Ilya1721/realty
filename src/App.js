@@ -47,6 +47,38 @@ function App() {
       })
     );
   }
+  if (localStorage.getItem("currency") === null) {
+    localStorage.setItem(
+      "currency",
+      JSON.stringify([
+        {
+          index: 1,
+          value: 239,
+          text: "$",
+        },
+        {
+          index: 2,
+          value: 241,
+          text: "€",
+        },
+        {
+          index: 3,
+          value: 240,
+          text: "грн.",
+        },
+      ])
+    );
+  }
+  if (localStorage.getItem("currentCurrency") === null) {
+    localStorage.setItem(
+      "currentCurrency",
+      JSON.stringify({
+        index: 1,
+        value: 239,
+        text: "$",
+      })
+    );
+  }
 
   const addToWishList = (poster) => {
     const wishList = JSON.parse(localStorage.getItem("wishList"));

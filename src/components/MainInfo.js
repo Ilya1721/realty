@@ -2,6 +2,7 @@ import React from "react";
 
 function MainInfo(props) {
   const poster = props.poster;
+  const currency = JSON.parse(localStorage.getItem("currentCurrency"));
 
   return (
     <div>
@@ -14,7 +15,7 @@ function MainInfo(props) {
       <div className="price">
         <div className="info-header">Ціна</div>
         <div className="price-body">
-          {poster.priceArr[1]} $
+          {poster.priceArr[currency.index]} {currency.text}
           <span className="second-part">
             <i className="fas fa-circle"></i>
             <span className="alt">{poster.priceArr[3]} грн</span>
