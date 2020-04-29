@@ -20,6 +20,11 @@ function WishList(props) {
               deleteFromWishList={props.deleteFromWishList}
               poster={item}
               isInWish={true}
+              priceAndCurrency={{
+                priceIndex: JSON.parse(localStorage.getItem("currentCurrency"))
+                  .index,
+                currency: JSON.parse(localStorage.getItem("currentCurrency")),
+              }}
             />
           ))}
         </div>
