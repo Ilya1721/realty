@@ -10,8 +10,7 @@ class Home extends React.Component {
     this.state = {
       items: [],
       isEmpty: false,
-      limit: 1,
-      priceArrIndex: JSON.parse(localStorage.getItem("currentCurrency")).index,
+      limit: 15,
       req: localStorage.getItem("req"),
     };
   }
@@ -53,7 +52,9 @@ class Home extends React.Component {
                 deleteFromWishList={this.props.deleteFromWishList}
                 poster={item}
                 priceAndCurrency={{
-                  priceIndex: this.state.priceArrIndex,
+                  priceIndex: JSON.parse(
+                    localStorage.getItem("currentCurrency")
+                  ).index,
                   currency: JSON.parse(localStorage.getItem("currentCurrency")),
                 }}
               />
